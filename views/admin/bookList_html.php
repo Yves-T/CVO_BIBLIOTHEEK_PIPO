@@ -17,4 +17,5 @@ while ($book = $books->fetchObject()) {
     $response .= " </tr>";
 }
 $response .= "</tbody>";
+$response .= "</table>";
 return $response;

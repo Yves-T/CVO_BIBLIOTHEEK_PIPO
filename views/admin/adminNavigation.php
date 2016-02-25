@@ -1,6 +1,6 @@
 <?php
 $navigationIsClicked = isset($_GET['page']);
-$currentPage = "personal";
+$currentPage = "schrijvers";
 
 if ($navigationIsClicked) {
     // set the current page that was clicked in the navigation
@@ -25,7 +25,12 @@ $response = "
     <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
     <ul class=\"nav navbar-nav\">
 
-    <li class=\"dropdown\">
+    <li class=\"dropdown
+     ";
+$bookDropDown = $currentPage == 'listBooks' || $currentPage == 'bookDetail';
+$response .= (($bookDropDown) ? ' active' : '');
+
+$response .= "\">
           <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\"
            aria-expanded=\"false\">Boeken <span class=\"caret\"></span></a>
           <ul class=\"dropdown-menu\">

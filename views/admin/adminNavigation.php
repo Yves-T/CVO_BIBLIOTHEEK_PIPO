@@ -40,23 +40,6 @@ $response .= "\">
 
     <li
     ";
-$response .= "class='" . (($currentPage == 'personal') ? 'active' : '') . "' ";
-$response .= "
-    ><a href='index.php?page=personal'>Persoonlijke gegevens</a></li>
-    <li
-    ";
-$response .= "class='" . (($currentPage == 'education') ? 'active' : '') . "' ";
-$response .= "
-    ><a href='index.php?page=education'>Gevolgde opleidingen</a></li>
-    <li
-    ";
-$response .= "class='" . (($currentPage == 'projects') ? 'active' : '') . "' ";
-$response .= "
-    ><a href='index.php?page=projects'>Gemaakte projecten</a></li>
-    <li>
-    <a href='index.php?page=users'>Create admin user</a>
-    </li>
-    ";
 
 $response .= "
     <li>

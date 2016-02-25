@@ -1,5 +1,7 @@
 <?php
 
+// view for book list
+
 $response = "<table class=\"table table-striped\" id=\"allResultsTable\">
     <thead>
     <tr>

@@ -37,9 +37,20 @@ $response .= "\">
             <li><a href='index.php?page=listBooks'>Lijst boeken</a></li>
           </ul>
      </li>
-
-    <li
     ";
+
+$response .= "<li class=\"dropdown";
+
+$bookDropDown = $currentPage == 'listAuthors' || $currentPage == 'authorDetail';
+$response .= (($bookDropDown) ? ' active' : '');
+
+$response .= "\">
+          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\"
+           aria-expanded=\"false\">Schrijvers <span class=\"caret\"></span></a>
+          <ul class=\"dropdown-menu\">
+            <li><a href='index.php?page=listAuthors'>Lijst schrijvers</a></li>
+          </ul>
+     </li>";
 
 $response .= "
     <li>

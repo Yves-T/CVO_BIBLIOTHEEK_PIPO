@@ -53,6 +53,9 @@ $response .= "\">
      </li>";
 
 $response .= "
+     <li>
+        <a href='index.php?page=users'>Cre&euml;er admin</a>
+    </li>
     <li>
     <a href='index.php?logout=true'>Uitloggen</a>
     </li>";

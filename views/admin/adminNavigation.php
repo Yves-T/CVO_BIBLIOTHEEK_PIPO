@@ -27,7 +27,7 @@ $response = "
 
     <li class=\"dropdown
      ";
-$bookDropDown = $currentPage == 'listBooks' || $currentPage == 'bookDetail' || $currentPage = 'addBook';
+$bookDropDown = $currentPage == 'listBooks' || $currentPage == 'bookDetail' || $currentPage == 'addBook';
 $response .= (($bookDropDown) ? ' active' : '');
 
 $response .= "\">
@@ -43,8 +43,8 @@ $response .= "\">
 
 $response .= "<li class=\"dropdown";
 
-$bookDropDown = $currentPage == 'listAuthors' || $currentPage == 'authorDetail';
-$response .= (($bookDropDown) ? ' active' : '');
+$writersDropDown = $currentPage == 'listAuthors' || $currentPage == 'authorDetail';
+$response .= (($writersDropDown) ? ' active' : '');
 
 $response .= "\">
           <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\"

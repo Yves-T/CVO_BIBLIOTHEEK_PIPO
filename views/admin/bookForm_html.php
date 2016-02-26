@@ -9,7 +9,7 @@ $response .= "
 ";
 $response .= "
 
- <form method='post' action='index.php?page=$pageName'>
+ <form method='post' action='index.php?page=$pageName'  enctype='multipart/form-data'>
  <div class=\"form-group\">
  
     <fieldset>
@@ -33,6 +33,12 @@ $response .= "
     required />
     </div>
     
+    <!--boek image-->
+    <div class=\"form-group\">
+    <label>Afbeelding boek</label>
+    <input type='file' name='bookImage' class=\"form-control\"/>
+    </div>
+
     <!--boek category-->
     <div class=\"form-group\">
     <label>Categorie</label>

@@ -31,7 +31,8 @@ class Book_Table extends Table
 	    author.firstname, 
 	    book_category.category_description, 
 	    book.price, 
-	    book.shortcontent, 
+	    book.shortcontent,
+	    book.image,
 	    author.lastname
         FROM book INNER JOIN author ON book.author_id = author.id
 	    INNER JOIN book_category ON book.category_id = book_category.id WHERE book.id = ?";
@@ -41,7 +42,7 @@ class Book_Table extends Table
         return $statement;
     }
 
-    public function addBook($data)
+    public function addBook($data,$image)
     {
         try {
             // start transaction
@@ -51,13 +52,14 @@ class Book_Table extends Table
             $newAuthorId = $authorTable->addAuthor($data);
 
             // 2 insert book
-            $sql = "INSERT INTO book  (author_id,title,price,shortcontent,category_id) VALUES (?,?,?,?,?)";
+            $sql = "INSERT INTO book  (author_id,title,price,shortcontent,category_id,image) VALUES (?,?,?,?,?,?)";
             $data = array(
                 $newAuthorId,
                 $data['bookTitle'],
                 $data['bookPrice'],
                 $data['bookShortDescription'],
-                $data['bookCategory']
+                $data['bookCategory'],
+                $image
             );
             $this->makeStatement($sql, $data);
 

@@ -4,6 +4,7 @@
 // fetch categories from the database
 include_once "models/Category_Table.class.php";
 include_once "models/Book_Table.class.php";
+include_once "models/Uploader.class.php";
 $categoryTable = new Category_Table($db);
 $categories = $categoryTable->getAllCategories();
 
@@ -13,9 +14,21 @@ $addBookFormSubmitted = isset($_POST['add-book']);
 
 //if it is...
 if ($addBookFormSubmitted) {
-    echo "<pre>", var_dump($_POST), "</pre>";
+
+    $imageBaseName = "";
+    // if there is an image uploaded
+    if ($_FILES['bookImage']['size'] > 0) {
+        // save it on the server
+        $uploader = new Uploader('bookImage');
+        $uploader->saveIn("img");
+        $uploader->save();
+
+        // create an image name for the db
+        $imageBaseName = basename($_FILES['bookImage']['name']);
+    }
+
     $bookTable = new Book_Table($db);
-    $bookTable->addBook($_POST);
+    $bookTable->addBook($_POST, $imageBaseName);
 }
 
 // init variables for submit

@@ -20,6 +20,11 @@ if (!isset($book)) {
     $response .= convertDecimalPoint($book->price);
     $response .= "</h4>
                 <h3>Boek titel: $book->title</h3>
+                ";
+    if (!empty($book->image)) {
+        $response .= "<img src='img/$book->image' alt='boek afbeelding'  width=\"100\">";
+    }
+    $response .= "
                 <p><strong>Autheur:</strong>&nbsp;$book->firstname&nbsp;$book->lastname</p>
                 <p><strong>Categorie:</strong>&nbsp;$book->category_description</p>
                 <h4>Korte omschrijving</h4>

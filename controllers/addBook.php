@@ -30,7 +30,8 @@ if ($addBookFormSubmitted) {
     $bookTable = new Book_Table($db);
     $bookTable->addBook($_POST, $imageBaseName);
 
-    $okMessage = "Boek met success toegevoegd.";
+    $okMessage = "Boek met success toegevoegd. ";
+    $okMessage .= "<a href='index.php?page=listBooks'>Keer terug naar de lijst met boeken</a>";
 }
 
 // init variables for submit

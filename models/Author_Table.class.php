@@ -62,4 +62,20 @@ class Author_Table extends Table
         $data = array($authorId);
         $this->makeStatement($sql, $data);
     }
+
+    /**
+     * Update author with given form data.
+     * @param $data
+     */
+    public function updateAuthor($data)
+    {
+        $updateAuthorSql = "UPDATE author SET firstname=?, lastname=?, biography=? WHERE id=?";
+        $data = array(
+            $data['authorFirstName'],
+            $data['authorLastName'],
+            $data['authorBiography'],
+            $data['auhorId']
+        );
+        $this->makeStatement($updateAuthorSql, $data);
+    }
 }

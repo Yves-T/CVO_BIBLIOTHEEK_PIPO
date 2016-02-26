@@ -34,11 +34,13 @@ class Book_Table extends Table
     {
         $sql = "SELECT book.title, 
 	    author.firstname, 
+	    book.id,
 	    book_category.category_description, 
 	    book.price, 
 	    book.shortcontent,
 	    book.image,
 	    book.category_id,
+	    book.author_id,
 	    author.lastname,
 	    author.biography
         FROM book INNER JOIN author ON book.author_id = author.id
@@ -120,6 +122,43 @@ class Book_Table extends Table
             // return image path from deleted book
             $imageToDelete = $bookToDelete->image;
             return $imageToDelete;
+        } catch (PDOException $ex) {
+            //Something went wrong rollback!
+            $this->db->rollBack();
+            echo $ex->getMessage();
+        }
+    }
+
+    /**
+     * Update an existing book with given form data.
+     * @param $data
+     */
+    public function updateBook($formData, $image)
+    {
+        try {
+            // start transaction
+            $this->db->beginTransaction();
+
+            // 1 update book
+            $updateBookSql = "UPDATE book SET title=?, price=?, shortcontent=?, image=?,category_id=? WHERE id = ?";
+            $data = array(
+                $formData['bookTitle'],
+                $formData['bookPrice'],
+                $formData['bookShortDescription'],
+                $image,
+                $formData['bookCategory'],
+                $formData['bookId']
+            );
+
+            $statement = $this->makeStatement($updateBookSql, $data);
+
+            // 2 update author
+            $authorTable = new Author_Table($this->db);
+            $authorTable->updateAuthor($formData);
+
+            // commit transaction
+            $this->db->commit();
+
         } catch (PDOException $ex) {
             //Something went wrong rollback!
             $this->db->rollBack();

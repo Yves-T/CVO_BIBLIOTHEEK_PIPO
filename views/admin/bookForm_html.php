@@ -1,5 +1,7 @@
 <?php
 // view for create form for adding a book
+include_once "utility/formatFunctions_inc.php";
+
 $response = "";
 
 if (isset($notOkMessage)) {
@@ -48,7 +50,7 @@ $response .= "
      data-validation=\"number required\" ";
 
     if (isset($book->price)) {
-        $response .= " value='$book->price'";
+        $response .= " value='" . convertDecimalPoint($book->price) . "'";
     }
 
 $response .= "
@@ -135,6 +137,9 @@ $response .="</textarea>
     </div>
     </fieldset>
     
+    <input type='hidden' name='auhorId' value='$book->author_id'>
+    <input type='hidden' name='bookId' value='$book->id'>
+
     <input type='submit' id='submit' class=\"btn btn-warning btn-lg\" value='$buttonText' name='$submitName' />
 </form>
 <script type='text/javascript' src='js/tinymce/tinymce.min.js'> </script>

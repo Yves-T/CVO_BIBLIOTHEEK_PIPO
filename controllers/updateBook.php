@@ -3,6 +3,7 @@
 
 include_once "models/Category_Table.class.php";
 include_once "models/Book_Table.class.php";
+include_once "models/Uploader.class.php";
 
 function setErrorMessage()
 {
@@ -16,6 +17,38 @@ $categories = $categoryTable->getAllCategories();
 
 // if  the user has submitted the update book form
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $updateBookFormSubmitted = isset($_POST['update-book']);
+
+    if ($updateBookFormSubmitted) {
+        echo "<pre>", var_dump($_POST), "</pre>";
+        $bookTable = new Book_Table($db);
+        $imageBaseName = "";
+        // if there is an image uploaded
+        if ($_FILES['bookImage']['size'] > 0) {
+
+            // delete the old one
+
+            $oldBook = $bookTable->getBookDetail($_POST['bookId'])->fetchObject();
+            $oldImage = $oldBook->image;
+            if (!empty($oldImage) && file_exists("img/" . $oldImage)) {
+                unlink("img/" . $oldImage);
+            }
+
+            // save it on the server
+            $uploader = new Uploader('bookImage');
+            $uploader->saveIn("img");
+            $uploader->save();
+
+            // create an image name for the db
+            $imageBaseName = basename($_FILES['bookImage']['name']);
+        }
+
+        $bookTable->updateBook($_POST, $imageBaseName);
+
+        $okMessage = "Boek met success aamgepast. ";
+        $okMessage .= "<a href='index.php?page=listBooks'>Keer terug naar de lijst met boeken</a>";
+        $book = $bookTable->getBookDetail($_POST['bookId'])->fetchObject();
+    }
 
 } else {
     // it was a GET request so fetch book and author details to populate the form

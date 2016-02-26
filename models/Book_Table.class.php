@@ -97,7 +97,7 @@ class Book_Table extends Table
             $this->db->beginTransaction();
 
             // 1 fetch author id from book to be deleted
-            $fetchBookSql = "SELECT book.author_id FROM book WHERE book.id = ?";
+            $fetchBookSql = "SELECT book.author_id,book.image FROM book WHERE book.id = ?";
             $data = array($bookId);
             $statement = $this->makeStatement($fetchBookSql, $data);
             $bookToDelete = $statement->fetchObject();
@@ -114,6 +114,10 @@ class Book_Table extends Table
 
             // commit transaction
             $this->db->commit();
+
+            // return image path from deleted book
+            $imageToDelete = $bookToDelete->image;
+            return $imageToDelete;
         } catch (PDOException $ex) {
             //Something went wrong rollback!
             $this->db->rollBack();

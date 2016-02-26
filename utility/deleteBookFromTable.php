@@ -11,7 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if (isset($_POST['id'])) {
         $bookTable = new Book_Table($db);
-        $bookTable->deleteBook($_POST['id']);
+        $imageToDelete = $bookTable->deleteBook($_POST['id']);
+        // if there is an image to the book attached, delete it.
+        if (isset($imageToDelete) && !empty($imageToDelete)) {
+            unlink('../img/' . $imageToDelete);
+        }
     }
 
     $json = json_encode($_POST);

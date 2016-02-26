@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 $buttonText = "Updaten boek";
 $submitName = "update-book";
 $pageName = "updateBook";
+$formTitle = "Updaten nieuw boek";
 
 // return a view for this controller
 $updateBook = include_once "views/admin/bookForm_html.php";

@@ -38,6 +38,7 @@ if ($addBookFormSubmitted) {
 $buttonText = "Toevoegen boek";
 $submitName = "add-book";
 $pageName = "addBook";
+$formTitle = "Toevoegen nieuw boek";
 
 // return a view for this controller
 $addBook = include_once "views/admin/bookForm_html.php";

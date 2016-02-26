@@ -15,7 +15,7 @@ $response .= "
     }
 
 $response .= "
-<h1><span class=\"fa fa-book\"></span> Toevoegen nieuw boek</h1>
+<h1><span class=\"fa fa-book\"></span> $formTitle</h1>
 ";
 $response .= "
 

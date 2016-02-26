@@ -57,23 +57,23 @@ class Book_Table extends Table
      * @param $image
      * @return mixed
      */
-    public function addBook($data, $image)
+    public function addBook($formData, $image)
     {
         try {
             // start transaction
             $this->db->beginTransaction();
             // 1 insert author
             $authorTable = new Author_Table($this->db);
-            $newAuthorId = $authorTable->addAuthor($data);
+            $newAuthorId = $authorTable->addAuthor($formData);
 
             // 2 insert book
             $sql = "INSERT INTO book  (author_id,title,price,shortcontent,category_id,image) VALUES (?,?,?,?,?,?)";
             $data = array(
                 $newAuthorId,
-                $data['bookTitle'],
-                $data['bookPrice'],
-                $data['bookShortDescription'],
-                $data['bookCategory'],
+                $formData['bookTitle'],
+                $formData['bookPrice'],
+                $formData['bookShortDescription'],
+                $formData['bookCategory'],
                 $image
             );
             $this->makeStatement($sql, $data);

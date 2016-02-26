@@ -135,11 +135,13 @@ $response .= "
 
 $response .="</textarea>
     </div>
-    </fieldset>
-    
-    <input type='hidden' name='auhorId' value='$book->author_id'>
-    <input type='hidden' name='bookId' value='$book->id'>
+    </fieldset>";
+    if (isset($book)) {
+        $response .= "<input type='hidden' name='auhorId' value='$book->author_id'>";
+        $response .= "<input type='hidden' name='bookId' value='$book->id'>";
+    }
 
+    $response .= "
     <input type='submit' id='submit' class=\"btn btn-warning btn-lg\" value='$buttonText' name='$submitName' />
 </form>
 <script type='text/javascript' src='js/tinymce/tinymce.min.js'> </script>

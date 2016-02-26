@@ -2,13 +2,17 @@
 // view for create form for adding a book
 $response = "";
 
+if (isset($notOkMessage)) {
+    $response .= '<div class="alert alert-danger">' . $notOkMessage . ' </div>';
+} else {
+
 $response .= "
 <div class='row'>
 <div class=\"col-sm-6 col-sm-offset-3\">";
 
-if (isset($okMessage)) {
-    $response .= '<div class="alert alert-success">' . $okMessage . ' </div>';
-}
+    if (isset($okMessage)) {
+        $response .= '<div class="alert alert-success">' . $okMessage . ' </div>';
+    }
 
 $response .= "
 <h1><span class=\"fa fa-book\"></span> Toevoegen nieuw boek</h1>
@@ -25,7 +29,13 @@ $response .= "
     <div class=\"form-group\">
     <label>Boek titel</label>
     <input type='text' name='bookTitle'  class=\"form-control\" data-validation=\"required\" 
-    data-validation-error-msg=\"Gelieve de titel van het boek in te vullen!\"
+    data-validation-error-msg=\"Gelieve de titel van het boek in te vullen!\"";
+
+    if (isset($book->title)) {
+        $response .= " value='$book->title'";
+    }
+
+    $response.="
     required />
     </div>
 
@@ -35,7 +45,13 @@ $response .= "
     <input type='text' name='bookPrice' class=\"form-control\"
     data-validation-error-msg=\"Gelieve een geldige prijs in te vullen.! ( bv : 12,23 ) \"
     data-validation-allowing=\"float\"
-     data-validation=\"number required\" 
+     data-validation=\"number required\" ";
+
+    if (isset($book->price)) {
+        $response .= " value='$book->price'";
+    }
+
+$response .= "
     required />
     </div>
     
@@ -50,10 +66,14 @@ $response .= "
     <label>Categorie</label>
     <select class=\"form-control\" name='bookCategory'>";
 
-// iterate over available categories
-while ($category = $categories->fetchObject()) {
-    $response .= "<option value='$category->id'>$category->category_description</option>";
-}
+    // iterate over available categories
+    while ($category = $categories->fetchObject()) {
+        $response .= "<option value='$category->id'";
+        if (isset($book->category_id) && $book->category_id == $category->id) {
+            $response .= " selected ";
+        }
+        $response .= ">$category->category_description</option>";
+    }
 
 $response .= "
     </select>
@@ -62,7 +82,13 @@ $response .= "
      <!--boek short comment-->
     <div class=\"form-group\">
     <label>Korte inhoud</label>
-    <textarea id='shortCommentEditor' class=\"form-control\" rows=\"3\" name='bookShortDescription' ></textarea>
+    <textarea id='shortCommentEditor' class=\"form-control\" rows=\"3\" name='bookShortDescription' >";
+
+    if (isset($book->shortcontent)) {
+        $response .= $book->shortcontent;
+    }
+
+$response .="</textarea>
     </div>
     </fieldset>
     
@@ -72,7 +98,13 @@ $response .= "
     <div class=\"form-group\">
     <label>Voornaam autheur</label>
     <input type='text' name='authorFirstName'  class=\"form-control\" data-validation=\"required\" 
-    data-validation-error-msg=\"Gelieve de voornaam van de autheur in te vullen!\"
+    data-validation-error-msg=\"Gelieve de voornaam van de autheur in te vullen!\"";
+
+    if (isset($book->firstname)) {
+        $response .= " value='$book->firstname'";
+    }
+
+$response .= "
     required />
     </div>
     
@@ -80,14 +112,26 @@ $response .= "
     <div class=\"form-group\">
     <label>Achternaam autheur</label>
     <input type='text' name='authorLastName'  class=\"form-control\" data-validation=\"required\" 
-    data-validation-error-msg=\"Gelieve de achternaam van de autheur in te vullen!\"
+    data-validation-error-msg=\"Gelieve de achternaam van de autheur in te vullen!\"";
+
+    if (isset($book->lastname)) {
+        $response .= " value='$book->lastname'";
+    }
+
+$response .= "
     required />
     </div>
     
      <!--author biography-->
     <div class=\"form-group\">
     <label>Autheur biografie</label>
-    <textarea class=\"form-control\" id='authorBiographyEditor' rows=\"3\" name='authorBiography' ></textarea>
+    <textarea class=\"form-control\" id='authorBiographyEditor' rows=\"3\" name='authorBiography' >";
+
+    if (isset($book->biography)) {
+        $response .= $book->biography;
+    }
+
+$response .="</textarea>
     </div>
     </fieldset>
     
@@ -102,5 +146,5 @@ $response .= "
 </div>
 </div>
 ";
-
+}
 return $response;

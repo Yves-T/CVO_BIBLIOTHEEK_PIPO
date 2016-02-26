@@ -38,7 +38,9 @@ class Book_Table extends Table
 	    book.price, 
 	    book.shortcontent,
 	    book.image,
-	    author.lastname
+	    book.category_id,
+	    author.lastname,
+	    author.biography
         FROM book INNER JOIN author ON book.author_id = author.id
 	    INNER JOIN book_category ON book.category_id = book_category.id WHERE book.id = ?";
 

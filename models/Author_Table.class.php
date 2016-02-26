@@ -1,6 +1,10 @@
 <?php
 
-include_once "models/Table.class.php";
+if (strrpos($_SERVER['REQUEST_URI'], '/utility/')) {
+    include_once "../models/Table.class.php";
+} else {
+    include_once "models/Table.class.php";
+}
 
 class Author_Table extends Table
 {
@@ -41,5 +45,16 @@ class Author_Table extends Table
         $data = array($data['authorFirstName'], $data['authorLastName'], $data['authorBiography']);
         $this->makeStatement($sql, $data);
         return $this->db->lastInsertId();
+    }
+
+    /**
+     * Delete an author for a given author id.
+     * @param $authorId
+     */
+    public function deleteAuthor($authorId)
+    {
+        $sql = "DELETE FROM author WHERE author.id = ?";
+        $data = array($authorId);
+        $this->makeStatement($sql, $data);
     }
 }

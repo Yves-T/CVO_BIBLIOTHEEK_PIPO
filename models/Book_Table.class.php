@@ -1,7 +1,12 @@
 <?php
 
-include_once "models/Table.class.php";
-include_once "models/Author_Table.class.php";
+if (strrpos($_SERVER['REQUEST_URI'], '/utility/')) {
+    include_once "../models/Table.class.php";
+    include_once "../models/Author_Table.class.php";
+} else {
+    include_once "models/Table.class.php";
+    include_once "models/Author_Table.class.php";
+}
 
 class Book_Table extends Table
 {
@@ -73,4 +78,41 @@ class Book_Table extends Table
             echo $ex->getMessage();
         }
     }
+
+    /**
+     * Delete book with given book id.
+     * @param $bookId
+     */
+    public function deleteBook($bookId)
+    {
+        try {
+
+            // start transaction
+            $this->db->beginTransaction();
+
+            // 1 fetch author id from book to be deleted
+            $fetchBookSql = "SELECT book.author_id FROM book WHERE book.id = ?";
+            $data = array($bookId);
+            $statement = $this->makeStatement($fetchBookSql, $data);
+            $bookToDelete = $statement->fetchObject();
+
+            $authorIdToBeDeleted = $bookToDelete->author_id;
+
+            // 2 delete author
+            $authorTable = new Author_Table($this->db);
+            $authorTable->deleteAuthor($authorIdToBeDeleted);
+
+            // 3 Delete book
+            $deleteSql = "DELETE FROM book WHERE id = ?";
+            $this->makeStatement($deleteSql, $data);
+
+            // commit transaction
+            $this->db->commit();
+        } catch (PDOException $ex) {
+            //Something went wrong rollback!
+            $this->db->rollBack();
+            echo $ex->getMessage();
+        }
+    }
+
 }

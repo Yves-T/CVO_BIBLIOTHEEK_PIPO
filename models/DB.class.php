@@ -12,7 +12,11 @@ class DB
     {
         if (self::$instance == null) {
 
-            $dsn = "sqlite:models/bibliotheek.db";
+            if (strrpos($_SERVER['REQUEST_URI'], '/utility/')) {
+                $dsn = "sqlite:../models/bibliotheek.db";
+            } else {
+                $dsn = "sqlite:models/bibliotheek.db";
+            }
 
             $pdoOptions = array(
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

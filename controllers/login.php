@@ -3,8 +3,6 @@
 include_once "models/Admin_Table.class.php";
 $view = include_once "views/admin/login_form_html.php";
 
-unset($_SESSION[LOGINERROR]);
-
 $loginFormSubmitted = isset($_POST['log-in']);
 if ($loginFormSubmitted) {
 //    $admin->login();
@@ -20,6 +18,8 @@ if ($loginFormSubmitted) {
         } else {
             $_SESSION[LOGINERROR] = "Login poging mislukt";
             $errorMessage = "Login poging mislukt";
+            header("Location: index.php");
+            die();
         }
 //        $admin->login();
     } catch (Exception $e) {
@@ -31,6 +31,6 @@ if ($loginFormSubmitted) {
 if ($admin->isLoggedIn()) {
     $view = "";
 }
-$errorMessage = "Login poging mislukt";
+
 
 return $view;

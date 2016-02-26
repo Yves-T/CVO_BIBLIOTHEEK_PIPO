@@ -16,6 +16,7 @@ $response .= " <nav class=\"navbar navbar-default\">
 
 if (isset($_SESSION[LOGINERROR])) {
     $response .= '<div class="alert alert-danger">' . $_SESSION[LOGINERROR] . ' </div>';
+    unset($_SESSION[LOGINERROR]);
 }
 
 $response .= "

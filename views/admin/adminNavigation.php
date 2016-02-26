@@ -36,6 +36,7 @@ $response .= "\">
           <ul class=\"dropdown-menu\">
             <li><a href='index.php?page=listBooks'>Lijst boeken</a></li>
             <li><a href='index.php?page=addBook'>Boek toevoegen</a></li>
+            <li><a href='index.php?page=searchBook'>Boek zoeken</a></li>
           </ul>
      </li>
     ";

@@ -166,4 +166,17 @@ class Book_Table extends Table
         }
     }
 
+    /**
+     * Search a book with given search filter and search term
+     * @param $searchFilter
+     * @param $searchTerm
+     */
+    public function searchBook($searchFilter, $searchTerm)
+    {
+        $sql = "SELECT * FROM book WHERE " . $searchFilter . " LIKE ?";
+        $data = array("%$searchTerm%");
+        $statement = $this->makeStatement($sql, $data);
+        return $statement;
+    }
+
 }

@@ -12,6 +12,7 @@ $pageData->title = "Bibliotheek";
 $pageData->addCSS('css/style.css');
 $pageData->addCSS('css/font-awesome.min.css');
 $pageData->addCSS('css/bootstrap.min.css');
+$pageData->addCSS('https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css');
 $pageData->addScript('js/jquery.min.js');
 $pageData->addScript('js/bootstrap.min.js');
 $pageData->addScript('js/script.js');

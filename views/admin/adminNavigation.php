@@ -54,6 +54,18 @@ $response .= "\">
           </ul>
      </li>";
 
+$response .= "<li class=\"dropdown";
+$memberDropDown = $currentPage == 'addMember';
+$response .= (($memberDropDown) ? ' active' : '');
+
+$response .= "\">
+          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\"
+           aria-expanded=\"false\">Leden <span class=\"caret\"></span></a>
+          <ul class=\"dropdown-menu\">
+            <li><a href='index.php?page=addMember'>Voeg lid toe</a></li>
+          </ul>
+     </li>";
+
 $response .= "
      <li>
         <a href='index.php?page=users'>Cre&euml;er admin</a>

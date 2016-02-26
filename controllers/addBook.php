@@ -29,6 +29,8 @@ if ($addBookFormSubmitted) {
 
     $bookTable = new Book_Table($db);
     $bookTable->addBook($_POST, $imageBaseName);
+
+    $okMessage = "Boek met success toegevoegd.";
 }
 
 // init variables for submit

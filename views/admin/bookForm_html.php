@@ -4,7 +4,13 @@ $response = "";
 
 $response .= "
 <div class='row'>
-<div class=\"col-sm-6 col-sm-offset-3\">
+<div class=\"col-sm-6 col-sm-offset-3\">";
+
+if (isset($okMessage)) {
+    $response .= '<div class="alert alert-success">' . $okMessage . ' </div>';
+}
+
+$response .= "
 <h1><span class=\"fa fa-book\"></span> Toevoegen nieuw boek</h1>
 ";
 $response .= "

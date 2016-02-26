@@ -27,7 +27,7 @@ $response = "
 
     <li class=\"dropdown
      ";
-$bookDropDown = $currentPage == 'listBooks' || $currentPage == 'bookDetail';
+$bookDropDown = $currentPage == 'listBooks' || $currentPage == 'bookDetail' || $currentPage = 'addBook';
 $response .= (($bookDropDown) ? ' active' : '');
 
 $response .= "\">
@@ -35,6 +35,7 @@ $response .= "\">
            aria-expanded=\"false\">Boeken <span class=\"caret\"></span></a>
           <ul class=\"dropdown-menu\">
             <li><a href='index.php?page=listBooks'>Lijst boeken</a></li>
+            <li><a href='index.php?page=addBook'>Boek toevoegen</a></li>
           </ul>
      </li>
     ";

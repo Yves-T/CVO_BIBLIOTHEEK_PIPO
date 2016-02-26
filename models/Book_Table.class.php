@@ -1,6 +1,7 @@
 <?php
 
 include_once "models/Table.class.php";
+include_once "models/Author_Table.class.php";
 
 class Book_Table extends Table
 {
@@ -38,5 +39,36 @@ class Book_Table extends Table
         $statement = $this->makeStatement($sql, array($bookId));
 
         return $statement;
+    }
+
+    public function addBook($data)
+    {
+        try {
+            // start transaction
+            $this->db->beginTransaction();
+            // 1 insert author
+            $authorTable = new Author_Table($this->db);
+            $newAuthorId = $authorTable->addAuthor($data);
+
+            // 2 insert book
+            $sql = "INSERT INTO book  (author_id,title,price,shortcontent,category_id) VALUES (?,?,?,?,?)";
+            $data = array(
+                $newAuthorId,
+                $data['bookTitle'],
+                $data['bookPrice'],
+                $data['bookShortDescription'],
+                $data['bookCategory']
+            );
+            $this->makeStatement($sql, $data);
+
+            // commit transaction
+            $this->db->commit();
+
+            return $this->db->lastInsertId();
+        } catch (PDOException $ex) {
+            //Something went wrong rollback!
+            $this->db->rollBack();
+            echo $ex->getMessage();
+        }
     }
 }

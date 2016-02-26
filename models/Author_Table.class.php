@@ -34,4 +34,12 @@ class Author_Table extends Table
 
         return $statement;
     }
+
+    public function addAuthor($data)
+    {
+        $sql = "INSERT INTO author (firstname,lastname,biography) VALUES(?,?,?)";
+        $data = array($data['authorFirstName'], $data['authorLastName'], $data['authorBiography']);
+        $this->makeStatement($sql, $data);
+        return $this->db->lastInsertId();
+    }
 }

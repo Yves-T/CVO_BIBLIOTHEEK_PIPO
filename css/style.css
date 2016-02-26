@@ -16,3 +16,7 @@
 #wrapper > nav > div > div > a {
     margin-left: 10px;
 }
+
+#editor-error-message, #editor-error-message-bio {
+    color: red;
+}

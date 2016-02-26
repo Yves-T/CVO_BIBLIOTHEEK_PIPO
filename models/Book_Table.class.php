@@ -47,7 +47,13 @@ class Book_Table extends Table
         return $statement;
     }
 
-    public function addBook($data,$image)
+    /**
+     * Add book with given image path and book data.
+     * @param $data
+     * @param $image
+     * @return mixed
+     */
+    public function addBook($data, $image)
     {
         try {
             // start transaction

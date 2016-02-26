@@ -39,6 +39,11 @@ class Author_Table extends Table
         return $statement;
     }
 
+    /**
+     * Add author with given author data.
+     * @param $data
+     * @return mixed
+     */
     public function addAuthor($data)
     {
         $sql = "INSERT INTO author (firstname,lastname,biography) VALUES(?,?,?)";

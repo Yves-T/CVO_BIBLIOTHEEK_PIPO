@@ -66,8 +66,11 @@ $response .= "\">
           </ul>
      </li>";
 
+
+$createAdminActive = ($currentPage == 'users') ? 'active' : '';
+
 $response .= "
-     <li>
+     <li class='$createAdminActive'>
         <a href='index.php?page=users'>Cre&euml;er admin</a>
     </li>
     <li>

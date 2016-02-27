@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $updateBookFormSubmitted = isset($_POST['update-book']);
 
     if ($updateBookFormSubmitted) {
-        echo "<pre>", var_dump($_POST), "</pre>";
         $bookTable = new Book_Table($db);
         $imageBaseName = "";
         // if there is an image uploaded

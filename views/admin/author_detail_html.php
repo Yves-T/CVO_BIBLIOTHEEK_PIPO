@@ -10,7 +10,14 @@ if (!isset($author)) {
     $response = " 
 <div class=\"container\">
 <div class='row'>
-    <div class=\"col-md-9\">
+    <div class=\"col-md-9\">";
+
+
+    if (isset($okMessage)) {
+        $response .= '<div class="alert alert-success">' . $okMessage . ' </div>';
+    }
+
+    $response .= "
 
         <div class=\"thumbnail\">
             <div class=\"caption-full\">";
@@ -27,6 +34,28 @@ if (!isset($author)) {
                 </ul>";
     } else {
         $response .= "Voor deze autheur zijn geen boeken beschikbaar.";
+
+        // form to link author to a book
+        $response .= "<h4><span class=\"fa fa-link\"></span> Autheur aan boek koppelen</h4>";
+        $response .= "
+ <form method='post' action='index.php?page=authorDetail'  enctype='multipart/form-data'>
+ <div class=\"form - group\">
+ <label>Lijst boeken zonder autheur</label>
+    <select class=\"form-control\" name='bookId'>";
+
+        while ($bookWithoutAuthor = $booksWithoutAuthor->fetchObject()) {
+            $response .= "<option value='$bookWithoutAuthor->id'>$bookWithoutAuthor->title</option>";
+        }
+
+        $response .= "
+        </select>
+    </div>
+    <input type='hidden' name='authorId' value='$author->id'>
+    <input type='hidden' name='authorName' value='$author->firstname&nbsp;$author->lastname'>
+    <input type='submit' id='submit' class=\"btn btn-warning btn-lg\" value='Koppel dit boek' name='connect-bookauthor' />
+    </form>
+ ";
+
     }
 
     $response .= "
@@ -38,15 +67,17 @@ if (!isset($author)) {
 ";
 }
 
+if (!isset($okMessage)) {
 // attach a go back button
-$response .= "
+    $response .= "
 <div class=\"container\"><div class='row'>
     <div class=\"col-md-9\">
     <button class='btn btn-default' onclick=\"goBack()\">Ga terug</button>";
-$response .= "<script src='js/goBack.js'></script>
+    $response .= "<script src='js/goBack.js'></script>
         </div>
     </div>
 </div>";
+}
 
 // return view content
 return $response;

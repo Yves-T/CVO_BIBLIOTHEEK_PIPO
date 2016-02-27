@@ -26,6 +26,17 @@ class Book_Table extends Table
     }
 
     /**
+     * Get all books without an author.
+     * @return mixed
+     */
+    public function getBooksWithoutAuthor()
+    {
+        $sql = "SELECT * FROM book WHERE author_id IS NULL ORDER BY book.title";
+
+        return $this->makeStatement($sql);
+    }
+
+    /**
      * Get book details for a given book id
      * @param $bookId
      * @return mixed
@@ -173,4 +184,16 @@ class Book_Table extends Table
         return $statement;
     }
 
+    /**
+     * Connect book to author.
+     * @param $authorId
+     * @param $bookId
+     * @return mixed
+     */
+    public function connectBookToAuthor($authorId, $bookId)
+    {
+        $sql = "UPDATE book SET author_id=? WHERE id = ?";
+        $data = array($authorId, $bookId);
+        return $this->makeStatement($sql, $data);
+    }
 }

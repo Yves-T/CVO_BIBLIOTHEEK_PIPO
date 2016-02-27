@@ -9,8 +9,6 @@
                 editor.on('change', function (e) {
                     var shortEditorContent = tinyMCE.get('shortCommentEditor').getContent();
                     validateEditor(shortEditorContent, "shortCommentEditor", "#editor-error-message");
-                    var authorEditorContent = tinyMCE.get('authorBiographyEditor').getContent();
-                    validateEditor(authorEditorContent, "authorBiographyEditor", "#editor-error-message-bio");
 
                     function validateEditor(editorContent, editorName, editorErrorId) {
                         if (editorContent == '' || editorContent == null) {

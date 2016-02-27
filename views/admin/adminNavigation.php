@@ -43,7 +43,7 @@ $response .= "\">
 
 $response .= "<li class=\"dropdown";
 
-$writersDropDown = $currentPage == 'listAuthors' || $currentPage == 'authorDetail';
+$writersDropDown = $currentPage == 'listAuthors' || $currentPage == 'authorDetail' || $currentPage == "addAuthor";
 $response .= (($writersDropDown) ? ' active' : '');
 
 $response .= "\">
@@ -51,6 +51,7 @@ $response .= "\">
            aria-expanded=\"false\">Schrijvers <span class=\"caret\"></span></a>
           <ul class=\"dropdown-menu\">
             <li><a href='index.php?page=listAuthors'>Lijst schrijvers</a></li>
+            <li><a href='index.php?page=addAuthor'>Schrijver toevoegen</a></li>
           </ul>
      </li>";
 

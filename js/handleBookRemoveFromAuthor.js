@@ -1,6 +1,6 @@
 $(document).on("click", ".delete", function (event) {
     console.log(event.target.id);
-    var answer = confirm("Wil je dit boek echt verwijderen ?");
+    var answer = confirm("Wil je dit boek echt loskoppelen van deze autheur ?");
     if (answer == true) {
         $.ajax({
             url: "utility/removeBookFromAuthor.php",

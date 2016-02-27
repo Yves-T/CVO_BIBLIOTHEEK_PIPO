@@ -113,12 +113,11 @@ class Book_Table extends Table
             $statement = $this->makeStatement($fetchBookSql, $data);
             $bookToDelete = $statement->fetchObject();
 
-            $authorIdToBeDeleted = $bookToDelete->author_id;
+            $authorId = $bookToDelete->author_id;
 
-            if (isset($authorIdToBeDeleted)) {
-                // 2 delete author
-                $authorTable = new Author_Table($this->db);
-                $authorTable->deleteAuthor($authorIdToBeDeleted);
+            if (isset($authorId)) {
+                // 2 set author foreign key to null
+                $this->removeAuthorFromBook($authorId);
             }
 
             // 3 Delete book

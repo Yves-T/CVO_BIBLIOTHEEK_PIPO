@@ -35,7 +35,7 @@ if (!isset($author)) {
 
         if (!isset($okMessage)) {
             $response .= "<input id='$author->id' type=\"submit\" class=\"btn btn-danger btn-sm delete\"";
-            $response .= "value=\"Loskoppelen\">\"";
+            $response .= "value=\"Loskoppelen\">";
         }
 
         $response .= "

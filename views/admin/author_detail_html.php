@@ -18,11 +18,18 @@ if (!isset($author)) {
     $response .= "
                 <h3>Details voor autheur: &nbsp;$author->firstname&nbsp;$author->lastname</h3>
                 <h4><strong>Autheur biografie:</strong></h4>
-                <div>$author->biography</div>
+                <div>$author->biography</div>";
+    if (isset($author->title)) {
+        $response .= "
                 <h4><strong>Boeken:</strong></h4>
                 <ul>
                     <li>$author->title</li>
-                </ul>
+                </ul>";
+    } else {
+        $response .= "Voor deze autheur zijn geen boeken beschikbaar.";
+    }
+
+    $response .= "
             </div>
         </div>
     </div>

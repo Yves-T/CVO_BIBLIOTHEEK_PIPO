@@ -29,14 +29,25 @@ class Author_Table extends Table
      */
     public function getAuthorDetail($authorId)
     {
-        $sql = "SELECT author.firstname, 
+        $countSql = "SELECT COUNT(*) AS count FROM book WHERE author_id=:authorid";
+        $countStatement = $this->db->prepare($countSql);
+        $countStatement->execute(['authorid' => $authorId]);
+        $row = $countStatement->fetch();
+        $numOfRows = $row['count'];
+        if ($numOfRows > 0) {
+            // a book for this author has been found so get the details and return them
+            $sql = "SELECT author.firstname,
 	    author.lastname, 
 	    book.title, 
 	    author.biography
         FROM book INNER JOIN author ON book.author_id = author.id WHERE author.id = ?";
-        $statement = $this->makeStatement($sql, array($authorId));
-
-        return $statement;
+            return $this->makeStatement($sql, array($authorId));
+        } else {
+            // there is no book information for this author. Only fetch the author and return data
+            $authorSql = "SELECT * FROM author WHERE id = ?";
+            $authorData = array($authorId);
+            return $this->makeStatement($authorSql, $authorData);
+        }
     }
 
     /**

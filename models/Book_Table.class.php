@@ -43,11 +43,31 @@ class Book_Table extends Table
      */
     public function getBookDetail($bookId)
     {
-        $sql = "SELECT book.title, 
-	    author.firstname, 
+        // check if book has an author. If it hasn't the number of rows is greater than 0
+        $countSql = "SELECT COUNT(*) AS count FROM book WHERE id=:bookid AND author_id IS NULL";
+        $countStatement = $this->db->prepare($countSql);
+        $countStatement->execute(['bookid' => $bookId]);
+        $row = $countStatement->fetch();
+        $numOfRows = $row['count'];
+
+        // book has no author available, so fetch category and book details only
+        if ($numOfRows > 0) {
+            $sql = "SELECT book.id,
+        book.title,
+	    book_category.category_description,
+	    book.price,
+	    book.shortcontent,
+	    book.image,
+	    book.category_id
+        FROM book INNER JOIN book_category ON book.category_id = book_category.id WHERE book.id = ?";
+            return $this->makeStatement($sql, array($bookId));
+        } else {
+            // book has an author available, so fetch all data
+            $sql = "SELECT book.title,
+	    author.firstname,
 	    book.id,
 	    book_category.category_description, 
-	    book.price, 
+	    book.price,
 	    book.shortcontent,
 	    book.image,
 	    book.category_id,
@@ -57,9 +77,10 @@ class Book_Table extends Table
         FROM book INNER JOIN author ON book.author_id = author.id
 	    INNER JOIN book_category ON book.category_id = book_category.id WHERE book.id = ?";
 
-        $statement = $this->makeStatement($sql, array($bookId));
+            $statement = $this->makeStatement($sql, array($bookId));
 
-        return $statement;
+            return $statement;
+        }
     }
 
     /**

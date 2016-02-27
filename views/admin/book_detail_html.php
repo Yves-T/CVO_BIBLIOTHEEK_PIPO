@@ -24,8 +24,15 @@ if (!isset($book)) {
     if (!empty($book->image)) {
         $response .= "<img src='img/$book->image' alt='boek afbeelding'  width=\"100\">";
     }
+
+    if (isset($book->firstname)) {
+        $response .= "
+                <p><strong>Autheur:</strong>&nbsp;$book->firstname&nbsp;$book->lastname</p>";
+    } else {
+        $response .= "<p><strong>Autheur: Er is geen autheur voor dit boek bekend op dit moment.</p>";
+    }
+
     $response .= "
-                <p><strong>Autheur:</strong>&nbsp;$book->firstname&nbsp;$book->lastname</p>
                 <p><strong>Categorie:</strong>&nbsp;$book->category_description</p>
                 <h4>Korte omschrijving</h4>
                 <div>$book->shortcontent</div>

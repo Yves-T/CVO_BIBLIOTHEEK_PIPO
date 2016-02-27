@@ -4,7 +4,7 @@
 $response = "";
 $response .= "<div class='row'>
 <div class=\"col-sm-6 col-sm-offset-3\">
- <h1><span class=\"fa fa-user\"></span> Lid toevoegen</h1>";
+ <h1><span class=\"fa fa-user\"></span> $formTitle</h1>";
 
 if (isset($okMessage)) {
     $response .= '<div class="alert alert-success">' . $okMessage . ' </div>';
@@ -14,9 +14,14 @@ if (isset($errorMessage)) {
     $response .= '<div class="alert alert-danger">' . $errorMessage . ' </div>';
 }
 
+if (isset($notOkMessage)) {
+    $response .= '<div class="alert alert-danger">' . $notOkMessage . ' </div>';
+}
+
+
 $response .= "
 
-<form method='post' action='index.php?page=addMember'>
+<form method='post' action='$formUrl'>
       <div class=\"form-group\">
         <label>Voornaam</label>
         <input type='text' class=\"form-control\" name='voornaam' data-validation=\"required\"";
@@ -91,9 +96,16 @@ if (isset($formData['memberZip'])) {
 $response .= "
            data-validation-error-msg=\"Gelieve een geldige postcode in te vullen!\"
 		  required/>
-        </div>
+        </div>";
+
+if (isset($member)) {
+    $response .= "<input type='hidden' name='memberId' value='$member->id'>";
+}
+
+$response .= "
         
-        <input type='submit' class=\"btn btn-warning btn-lg\" value='Voeg lid toe' name='new-member'/>
+        
+        <input type='submit' class=\"btn btn-warning btn-lg\" value='$buttonText' name='new-member'/>
 </form>
 </div>
 </div>

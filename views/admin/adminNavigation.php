@@ -56,13 +56,14 @@ $response .= "\">
      </li>";
 
 $response .= "<li class=\"dropdown";
-$memberDropDown = $currentPage == 'addMember';
+$memberDropDown = $currentPage == 'addMember' || $currentPage == 'memberList';
 $response .= (($memberDropDown) ? ' active' : '');
 
 $response .= "\">
           <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\"
            aria-expanded=\"false\">Leden <span class=\"caret\"></span></a>
           <ul class=\"dropdown-menu\">
+            <li><a href='index.php?page=memberList'>Lijst met leden</a></li>
             <li><a href='index.php?page=addMember'>Voeg lid toe</a></li>
           </ul>
      </li>";

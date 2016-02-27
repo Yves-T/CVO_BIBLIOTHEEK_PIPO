@@ -18,7 +18,7 @@ class Address_Table extends Table
     {
         $zipCodeTable = new Zip_Table($this->db);
         // 1 check if zip code exists
-        $foundZips = $zipCodeTable->checkCity($formData['memberCity']);
+        $foundZips = $this->validateZip($formData);
 
         // if it exists look up the id for the zip and add the member address
         if ($foundZips > 0) {
@@ -37,6 +37,42 @@ class Address_Table extends Table
             return $this->db->lastInsertId();
         } else {
             // city check failed so return false
+            return false;
+        }
+    }
+
+    private function validateZip($formData)
+    {
+        $zipCodeTable = new Zip_Table($this->db);
+        // 1 check if zip code exists
+        return $zipCodeTable->checkCity($formData['memberCity']);
+    }
+
+    /**
+     * Update address.
+     * @param $formData
+     */
+    public function updateAddress($formData, $addressId)
+    {
+        $zipCodeTable = new Zip_Table($this->db);
+        // 1 check if zip code exists
+        $foundZips = $this->validateZip($formData);
+
+        // if zip exists start updating
+        if ($foundZips > 0) {
+            $foundZip = $zipCodeTable->getZipCodeByCity($formData['memberCity']);
+            $updateAddressSql = "UPDATE address SET housenr=?,street=?,zipcode_id=? WHERE id = ?";
+            $data = array(
+                $formData['streetNumber'],
+                $formData['streetName'],
+                $foundZip->fetchObject()->id,
+                $addressId
+            );
+            $this->makeStatement($updateAddressSql, $data);
+
+            return true;
+        } else {
+            // zip is not valid, so return false
             return false;
         }
     }

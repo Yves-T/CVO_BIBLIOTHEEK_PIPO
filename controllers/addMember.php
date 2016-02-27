@@ -18,6 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 
+// set up page variables
+$formTitle = " Lid toevoegen";
+$buttonText = "Voeg lid toe";
+$formUrl = "index.php?page=addMember";
+
 // return a view for this controller
 $addMemberView = include_once "views/admin/addMember_html.php";
 return $addMemberView;

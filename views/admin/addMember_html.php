@@ -18,6 +18,9 @@ if (isset($notOkMessage)) {
     $response .= '<div class="alert alert-danger">' . $notOkMessage . ' </div>';
 }
 
+if (!isset($okMessage)) {
+
+
 
 $response .= "
 
@@ -106,7 +109,10 @@ $response .= "
         
         
         <input type='submit' class=\"btn btn-warning btn-lg\" value='$buttonText' name='new-member'/>
-</form>
+</form>";
+
+}
+$response .= "
 </div>
 </div>
 

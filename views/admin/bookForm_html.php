@@ -102,7 +102,7 @@ $response .="</textarea>
     <input type='submit' id='submit' class=\"btn btn-warning btn-lg\" value='$buttonText' name='$submitName' />
 </form>
 <script type='text/javascript' src='js/tinymce/tinymce.min.js'> </script>
-<script src='js/initTinyMce.js'></script>
+<script src='js/initBookTinyMce.js'></script>
 <script src=\"//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.8/jquery.form-validator.min.js\"></script>
 <script src='js/addBookValidation.js'></script>
 </div>

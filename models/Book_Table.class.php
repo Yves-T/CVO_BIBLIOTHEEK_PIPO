@@ -148,10 +148,6 @@ class Book_Table extends Table
 
             $statement = $this->makeStatement($updateBookSql, $data);
 
-            // 2 update author
-            $authorTable = new Author_Table($this->db);
-            $authorTable->updateAuthor($formData);
-
             // commit transaction
             $this->db->commit();
 

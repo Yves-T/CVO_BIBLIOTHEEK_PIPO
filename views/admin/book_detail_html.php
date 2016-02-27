@@ -12,7 +12,13 @@ if (!isset($book)) {
     $response = " 
 <div class=\"container\">
 <div class='row'>
-    <div class=\"col-md-9\">
+    <div class=\"col-md-9\">";
+
+    if (isset($okMessage)) {
+        $response .= '<div class="alert alert-success">' . $okMessage . ' </div>';
+    }
+
+    $response .= "
 
         <div class=\"thumbnail\">
             <div class=\"caption-full\">
@@ -27,9 +33,46 @@ if (!isset($book)) {
 
     if (isset($book->firstname)) {
         $response .= "
-                <p><strong>Autheur:</strong>&nbsp;$book->firstname&nbsp;$book->lastname</p>";
+                <p id='$book->author_id'><strong>Autheur:</strong>&nbsp;$book->firstname&nbsp;$book->lastname&nbsp;";
+
+        if (!isset($okMessage)) {
+            $response .= "<input id='$book->author_id' type=\"submit\" class=\"btn btn-danger btn-sm delete\"";
+            $response .= "value=\"Loskoppelen\">";
+        }
+
+        $response .= "</p>
+
+                <div id='removeBookOk'>
+                <div class=\"alert alert-success\">
+                Autheur met success losgekoppeld.&nbsp;
+                <a href='index.php?page=listBooks'>Keer terug naar de lijst met boeken</a>
+                </div>
+                </div>
+";
     } else {
-        $response .= "<p><strong>Autheur: Er is geen autheur voor dit boek bekend op dit moment.</p>";
+        $response .= "<p><strong>Autheur:</strong> Er is geen autheur voor dit boek bekend op dit moment.</p>";
+
+        // form to link book to an author
+        $response .= "<h4><span class=\"fa fa-link\"></span> Boek aan een autheur koppelen</h4>";
+        $response .= "
+ <form method='post' action='index.php?page=bookDetail'  enctype='multipart/form-data'>
+ <div class=\"form-group\">
+ <label>Lijst boeken zonder autheur</label>
+    <select class=\"form-control\" name='authorId'>";
+
+        while ($authorWithoutBook = $authorsWithoutBooks->fetchObject()) {
+            $response .= "<option value='$authorWithoutBook->id'>";
+            $response .= "$authorWithoutBook->firstname&nbsp;$authorWithoutBook->lastname</option>";
+        }
+
+        $response .= "
+        </select>
+    </div>
+    <input type='hidden' name='bookId' value='$book->id'>
+    <input type='submit' id='submit' class=\"btn btn-warning btn-lg\" value='Koppel deze autheur' name='connect-authorbook' />
+    </form>
+ ";
+
     }
 
     $response .= "
@@ -44,13 +87,18 @@ if (!isset($book)) {
 ";
 }
 
+if (!isset($okMessage)) {
 // attach a go back button
-$response .= "
+    $response .= "
 <div class=\"container\"><div class='row'>
     <div class=\"col-md-9\">
     <button class='btn btn-default' onclick=\"goBack()\">Ga terug</button>";
-$response .= "<script src='js/goBack.js'></script>
+    $response .= "<script src='js/goBack.js'></script>
         </div>
     </div>
 </div>";
+}
+
+$response .= "<script src=\"js/handleBookRemoveFromAuthor.js\"></script>";
+
 return $response;

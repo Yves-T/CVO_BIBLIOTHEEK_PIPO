@@ -90,4 +90,21 @@ class Author_Table extends Table
         );
         $this->makeStatement($updateAuthorSql, $data);
     }
+
+    /**
+     * Get all authors without a book.
+     * @return mixed
+     */
+    public function getAuthorsWithoutBooks()
+    {
+        $sql = "SELECT a.*
+                  FROM author a
+                  LEFT JOIN book b
+                  ON a.id = b.author_id
+                  WHERE b.author_id IS NULL";
+
+        $statement = $this->makeStatement($sql);
+
+        return $statement;
+    }
 }

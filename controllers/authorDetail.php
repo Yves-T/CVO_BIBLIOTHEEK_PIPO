@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     // let the user know that the book has been added
     $okMessage = "$book->title is nu gekoppeld aan $book->firstname&nbsp;$book->lastname.";
-    $okMessage .= " <a href='index.php?page=listAuthors'>Keer terug naar de lijst met boeken</a>";
+    $okMessage .= " <a href='index.php?page=listAuthors'>Keer terug naar de lijst met autheurs</a>";
 } else {
     $authorId = $_GET['authorId'];
 }

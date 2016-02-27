@@ -38,7 +38,7 @@ if (isset($_GET['logout'])) {
         if ($navigationIsClicked) {
             $controller = $_GET['page'];
         } else {
-            $controller = "schrijvers";
+            $controller = "intro";
         }
         $pathToController = "controllers/$controller.php";
         $pageData->content .= include_once $pathToController;

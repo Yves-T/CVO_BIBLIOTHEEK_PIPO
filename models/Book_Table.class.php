@@ -62,14 +62,10 @@ class Book_Table extends Table
         try {
             // start transaction
             $this->db->beginTransaction();
-            // 1 insert author
-            $authorTable = new Author_Table($this->db);
-            $newAuthorId = $authorTable->addAuthor($formData);
 
-            // 2 insert book
-            $sql = "INSERT INTO book  (author_id,title,price,shortcontent,category_id,image) VALUES (?,?,?,?,?,?)";
+            // 1 insert book
+            $sql = "INSERT INTO book  (title,price,shortcontent,category_id,image) VALUES (?,?,?,?,?)";
             $data = array(
-                $newAuthorId,
                 $formData['bookTitle'],
                 $formData['bookPrice'],
                 $formData['bookShortDescription'],

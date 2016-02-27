@@ -91,51 +91,8 @@ $response .= "
     }
 
 $response .="</textarea>
-    </div>
-    </fieldset>
-    
-     <fieldset>
-    <legend>Autheur informatie:</legend>
-    <!--author first name-->
-    <div class=\"form-group\">
-    <label>Voornaam autheur</label>
-    <input type='text' name='authorFirstName'  class=\"form-control\" data-validation=\"required\" 
-    data-validation-error-msg=\"Gelieve de voornaam van de autheur in te vullen!\"";
+    </div>";
 
-    if (isset($book->firstname)) {
-        $response .= " value='$book->firstname'";
-    }
-
-$response .= "
-    required />
-    </div>
-    
-    <!--author last name-->
-    <div class=\"form-group\">
-    <label>Achternaam autheur</label>
-    <input type='text' name='authorLastName'  class=\"form-control\" data-validation=\"required\" 
-    data-validation-error-msg=\"Gelieve de achternaam van de autheur in te vullen!\"";
-
-    if (isset($book->lastname)) {
-        $response .= " value='$book->lastname'";
-    }
-
-$response .= "
-    required />
-    </div>
-    
-     <!--author biography-->
-    <div class=\"form-group\">
-    <label>Autheur biografie</label>
-    <textarea class=\"form-control\" id='authorBiographyEditor' rows=\"3\" name='authorBiography' >";
-
-    if (isset($book->biography)) {
-        $response .= $book->biography;
-    }
-
-$response .="</textarea>
-    </div>
-    </fieldset>";
     if (isset($book)) {
         $response .= "<input type='hidden' name='auhorId' value='$book->author_id'>";
         $response .= "<input type='hidden' name='bookId' value='$book->id'>";

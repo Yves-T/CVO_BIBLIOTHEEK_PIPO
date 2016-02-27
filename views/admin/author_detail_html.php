@@ -56,7 +56,7 @@ if (!isset($author)) {
         $response .= "<h4><span class=\"fa fa-link\"></span> Autheur aan boek koppelen</h4>";
         $response .= "
  <form method='post' action='index.php?page=authorDetail'  enctype='multipart/form-data'>
- <div class=\"form - group\">
+ <div class=\"form-group\">
  <label>Lijst boeken zonder autheur</label>
     <select class=\"form-control\" name='bookId'>";
 

@@ -38,6 +38,7 @@ class Author_Table extends Table
             // a book for this author has been found so get the details and return them
             $sql = "SELECT author.firstname,
 	    author.lastname, 
+	    author.id,
 	    book.title, 
 	    author.biography
         FROM book INNER JOIN author ON book.author_id = author.id WHERE author.id = ?";

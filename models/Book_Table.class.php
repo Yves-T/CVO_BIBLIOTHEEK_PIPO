@@ -196,4 +196,15 @@ class Book_Table extends Table
         $data = array($authorId, $bookId);
         return $this->makeStatement($sql, $data);
     }
+
+    /**
+     * Remove author from corresponding book.
+     * @param $bookId
+     */
+    public function removeAuthorFromBook($authorId)
+    {
+        $sql = "UPDATE book SET author_id=NULL WHERE author_id=?";
+        $data = array($authorId);
+        return $this->makeStatement($sql, $data);
+    }
 }

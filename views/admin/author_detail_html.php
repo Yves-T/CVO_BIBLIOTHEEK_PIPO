@@ -28,10 +28,27 @@ if (!isset($author)) {
                 <div>$author->biography</div>";
     if (isset($author->title)) {
         $response .= "
+                <div id='bookList'>
                 <h4><strong>Boeken:</strong></h4>
                 <ul>
-                    <li>$author->title</li>
-                </ul>";
+                    <li id='$author->id'>$author->title&nbsp;";
+
+        if (!isset($okMessage)) {
+            $response .= "<input id='$author->id' type=\"submit\" class=\"btn btn-danger btn-sm delete\"";
+            $response .= "value=\"Loskoppelen\">\"";
+        }
+
+        $response .= "
+                    </li>
+                </ul>
+                </div>
+                <div id='removeBookOk'>
+                <div class=\"alert alert-success\">
+                Boek met success losgekoppeld.&nbsp;
+                <a href='index.php?page=listAuthors'>Keer terug naar de lijst met autheurs</a>
+                </div>
+                </div>
+                ";
     } else {
         $response .= "Voor deze autheur zijn geen boeken beschikbaar.";
 
@@ -78,6 +95,8 @@ if (!isset($okMessage)) {
     </div>
 </div>";
 }
+
+$response .= "<script src=\"js/handleBookRemoveFromAuthor.js\"></script>";
 
 // return view content
 return $response;

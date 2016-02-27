@@ -104,9 +104,11 @@ class Book_Table extends Table
 
             $authorIdToBeDeleted = $bookToDelete->author_id;
 
-            // 2 delete author
-            $authorTable = new Author_Table($this->db);
-            $authorTable->deleteAuthor($authorIdToBeDeleted);
+            if (isset($authorIdToBeDeleted)) {
+                // 2 delete author
+                $authorTable = new Author_Table($this->db);
+                $authorTable->deleteAuthor($authorIdToBeDeleted);
+            }
 
             // 3 Delete book
             $deleteSql = "DELETE FROM book WHERE id = ?";

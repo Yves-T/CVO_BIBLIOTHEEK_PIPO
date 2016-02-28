@@ -171,6 +171,14 @@ class Book_Table extends Table
             // start transaction
             $this->db->beginTransaction();
 
+            $book = $this->getBookDetail($formData['bookId'])->fetchObject();
+
+            // if a book alread has an image and the user has not give another one
+            // don't throw it away bu reuse the original image
+            if (!empty($book->image) && empty($image)) {
+                $image = $book->image;
+            }
+
             // 1 update book
             $updateBookSql = "UPDATE book SET title=?, price=?, shortcontent=?, image=?,category_id=?,isbn=? WHERE id = ?";
             $data = array(

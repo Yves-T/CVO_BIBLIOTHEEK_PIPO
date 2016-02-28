@@ -56,7 +56,7 @@ $response .= "\">
      </li>";
 
 $response .= "<li class=\"dropdown";
-$memberDropDown = $currentPage == 'addMember' || $currentPage == 'memberList';
+$memberDropDown = $currentPage == 'addMember' || $currentPage == 'memberList' || $currentPage == "searchMember";
 $response .= (($memberDropDown) ? ' active' : '');
 
 $response .= "\">
@@ -65,6 +65,7 @@ $response .= "\">
           <ul class=\"dropdown-menu\">
             <li><a href='index.php?page=memberList'>Lijst met leden</a></li>
             <li><a href='index.php?page=addMember'>Voeg lid toe</a></li>
+            <li><a href='index.php?page=searchMember'>Lid zoeken</a></li>
           </ul>
      </li>";
 

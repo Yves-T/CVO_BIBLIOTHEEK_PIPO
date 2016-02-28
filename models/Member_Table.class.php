@@ -179,4 +179,26 @@ class Member_Table extends Table
         }
     }
 
+    /**
+     * Search a member with given search filter and search term
+     * @param $searchFilter
+     * @param $searchTerm
+     */
+    public function searchMember($searchFilter, $searchTerm)
+    {
+        $sql = "SELECT member.id,
+	member.address_id,
+	member.firstname,
+	member.lastname,
+	address.street,
+	address.housenr,
+	zipcode.zipcode,
+	zipcode.name
+    FROM member INNER JOIN address ON member.address_id = address.id
+	INNER JOIN zipcode ON address.zipcode_id = zipcode.id WHERE " . $searchFilter . " LIKE ?";
+
+        $data = array("%$searchTerm%");
+        $statement = $this->makeStatement($sql, $data);
+        return $statement;
+    }
 }

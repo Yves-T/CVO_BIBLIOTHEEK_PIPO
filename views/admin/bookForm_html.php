@@ -80,6 +80,20 @@ if (isset($notOkMessage)) {
     $response .= "
     </select>
     </div>
+
+    <div class=\"form-group\">
+    <label>ISBN nummer</label>
+     <input type='text' name='bookIsbn'  class=\"form-control\" data-validation=\"required length\"
+      data-validation-length=\"max13\"
+    data-validation-error-msg=\"Gelieve een isbn nummber van het boek in te vullen! (lengte max 13 tekens)\"";
+
+        if (isset($book->isbn)) {
+            $response .= " value='" . $book->isbn . "'";
+        }
+
+        $response .= "
+    required />
+    </div>
     
      <!--boek short comment-->
     <div class=\"form-group\">
@@ -94,7 +108,11 @@ if (isset($notOkMessage)) {
     </div>";
 
     if (isset($book)) {
-        $response .= "<input type='hidden' name='auhorId' value='$book->author_id'>";
+        if (isset($book->author_id)) {
+            $response .= "<input type='hidden' name='auhorId' value='$book->author_id'>";
+        } else {
+            $response .= "<input type='hidden' name='auhorId' value=''>";
+        }
         $response .= "<input type='hidden' name='bookId' value='$book->id'>";
     }
 

@@ -56,6 +56,7 @@ class Book_Table extends Table
         book.title,
 	    book_category.category_description,
 	    book.price,
+	    book.isbn,
 	    book.shortcontent,
 	    book.image,
 	    book.category_id
@@ -68,6 +69,7 @@ class Book_Table extends Table
 	    book.id,
 	    book_category.category_description, 
 	    book.price,
+	    book.isbn,
 	    book.shortcontent,
 	    book.image,
 	    book.category_id,
@@ -96,13 +98,14 @@ class Book_Table extends Table
             $this->db->beginTransaction();
 
             // 1 insert book
-            $sql = "INSERT INTO book  (title,price,shortcontent,category_id,image) VALUES (?,?,?,?,?)";
+            $sql = "INSERT INTO book  (title,price,shortcontent,category_id,image,isbn) VALUES (?,?,?,?,?,?)";
             $data = array(
                 $formData['bookTitle'],
                 $formData['bookPrice'],
                 $formData['bookShortDescription'],
                 $formData['bookCategory'],
-                $image
+                $image,
+                $formData['bookIsbn']
             );
             $this->makeStatement($sql, $data);
 
@@ -169,13 +172,14 @@ class Book_Table extends Table
             $this->db->beginTransaction();
 
             // 1 update book
-            $updateBookSql = "UPDATE book SET title=?, price=?, shortcontent=?, image=?,category_id=? WHERE id = ?";
+            $updateBookSql = "UPDATE book SET title=?, price=?, shortcontent=?, image=?,category_id=?,isbn=? WHERE id = ?";
             $data = array(
                 $formData['bookTitle'],
                 $formData['bookPrice'],
                 $formData['bookShortDescription'],
                 $image,
                 $formData['bookCategory'],
+                $formData['bookIsbn'],
                 $formData['bookId']
             );
 

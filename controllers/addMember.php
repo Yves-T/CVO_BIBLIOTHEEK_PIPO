@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // try to add the new member
     if ($memberTable->addMember($_POST)) {
         $okMessage = "Lid met success toegevoegd.";
-        $okMessage .= "<a href='index.php?page=memberList'>Keer terug naar de lijst met leden</a>";
+        $okMessage .= "<a href='index.php?page=memberList'>&nbsp;Keer terug naar de lijst met leden</a>";
     } else {
         // add member failed so return an error message
         $errorMessage = "Kan de gemeente niet vinden.Gelieve de gegevens te kontroleren.";

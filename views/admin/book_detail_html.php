@@ -51,6 +51,13 @@ if (!isset($book)) {
 ";
     } else {
         $response .= "<p><strong>Autheur:</strong> Er is geen autheur voor dit boek bekend op dit moment.</p>";
+        $authorsWithoutBookResults = [];
+        while ($authorWithoutBook = $authorsWithoutBooks->fetchObject()) {
+            array_push($authorsWithoutBookResults, $authorWithoutBook);
+        }
+
+        // if there are authors without books, offer a choice
+        if (count($authorsWithoutBookResults) > 0) {
 
         // form to link book to an author
         $response .= "<h4><span class=\"fa fa-link\"></span> Boek aan een autheur koppelen</h4>";
@@ -60,7 +67,7 @@ if (!isset($book)) {
  <label>Lijst boeken zonder autheur</label>
     <select class=\"form-control\" name='authorId'>";
 
-        while ($authorWithoutBook = $authorsWithoutBooks->fetchObject()) {
+        foreach($authorsWithoutBookResults as $authorWithoutBook) {
             $response .= "<option value='$authorWithoutBook->id'>";
             $response .= "$authorWithoutBook->firstname&nbsp;$authorWithoutBook->lastname</option>";
         }
@@ -72,6 +79,7 @@ if (!isset($book)) {
     <input type='submit' id='submit' class=\"btn btn-warning btn-lg\" value='Koppel deze autheur' name='connect-authorbook' />
     </form>
  ";
+        }
 
     }
 

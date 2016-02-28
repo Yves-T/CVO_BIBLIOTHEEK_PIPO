@@ -52,6 +52,14 @@ if (!isset($author)) {
     } else {
         $response .= "Voor deze autheur zijn geen boeken beschikbaar.";
 
+        $booksWithoutAuthorsResults = [];
+        while ($bookWithoutAuthor = $booksWithoutAuthor->fetchObject()) {
+            array_push($booksWithoutAuthorsResults, $bookWithoutAuthor);
+        }
+
+        // if there are books without authors, offer a choice to connect
+        if (count($booksWithoutAuthorsResults) > 0) {
+
         // form to link author to a book
         $response .= "<h4><span class=\"fa fa-link\"></span> Autheur aan boek koppelen</h4>";
         $response .= "
@@ -60,7 +68,7 @@ if (!isset($author)) {
  <label>Lijst boeken zonder autheur</label>
     <select class=\"form-control\" name='bookId'>";
 
-        while ($bookWithoutAuthor = $booksWithoutAuthor->fetchObject()) {
+        foreach($booksWithoutAuthorsResults as $bookWithoutAuthor) {
             $response .= "<option value='$bookWithoutAuthor->id'>$bookWithoutAuthor->title</option>";
         }
 
@@ -73,6 +81,7 @@ if (!isset($author)) {
     </form>
  ";
 
+        }
     }
 
     $response .= "

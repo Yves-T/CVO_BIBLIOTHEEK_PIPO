@@ -12,6 +12,7 @@ $response .= " <nav class=\"navbar navbar-default\">
  
  <div class='row'>
  <div class=\"col-sm-6 col-sm-offset-3\">
+ <h1>Welkom bij bibliotheek PIPO</h1>
  <h1><span class=\"fa fa-sign-in\"></span> Inloggen</h1>";
 
 if (isset($_SESSION[LOGINERROR])) {

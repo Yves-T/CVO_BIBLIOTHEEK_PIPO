@@ -30,6 +30,7 @@ while ($author = $authors->fetchObject()) {
 }
 $response .= "</tbody>";
 $response .= "</table>";
+$response .= "<a href='index.php?page=addAuthor' class='btn btn-warning'>Autheur toevoegen</a>";
 $response .= "</div>";
 $response .= "<script src=\"js/handleAuthorDelete.js\"></script>";
 return $response;

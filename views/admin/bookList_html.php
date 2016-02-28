@@ -37,6 +37,7 @@ if (count($results) < 1) {
     }
     $response .= "</tbody>";
     $response .= "</table>";
+    $response .= "<a href='index.php?page=addBook' class='btn btn-warning'>Boek toevoegen</a>";
     $response .= "</div>";
     $response .= "<script src=\"js/handleBookDelete.js\"></script>";
 }

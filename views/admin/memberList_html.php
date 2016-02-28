@@ -40,6 +40,7 @@ if (count($results) < 1) {
     }
     $response .= "</tbody>";
     $response .= "</table>";
+    $response .= "<a href='index.php?page=addMember' class='btn btn-warning'>Lid toevoegen</a>";
     $response .= "</div>";
     $response .= "<script src=\"js/handleMemberDelete.js\"></script>";
 }

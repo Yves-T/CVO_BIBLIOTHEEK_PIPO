@@ -210,7 +210,7 @@ class Book_Table extends Table
      */
     public function searchBook($searchFilter, $searchTerm)
     {
-        $sql = "SELECT * FROM book WHERE " . $searchFilter . " LIKE ?";
+        $sql = "SELECT * FROM book WHERE " . $searchFilter . " LIKE ? ORDER BY " . $searchFilter;
         $data = array("%$searchTerm%");
         $statement = $this->makeStatement($sql, $data);
         return $statement;

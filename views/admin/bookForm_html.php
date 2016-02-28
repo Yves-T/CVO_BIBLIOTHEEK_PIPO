@@ -8,18 +8,18 @@ if (isset($notOkMessage)) {
     $response .= '<div class="alert alert-danger">' . $notOkMessage . ' </div>';
 } else {
 
-$response .= "
+    $response .= "
 <div class='row'>
 <div class=\"col-sm-6 col-sm-offset-3\">";
 
     if (isset($okMessage)) {
         $response .= '<div class="alert alert-success">' . $okMessage . ' </div>';
-    }
+    } else {
 
-$response .= "
+    $response .= "
 <h1><span class=\"fa fa-book\"></span> $formTitle</h1>
 ";
-$response .= "
+    $response .= "
 
  <form method='post' action='index.php?page=$pageName'  enctype='multipart/form-data'>
  <div class=\"form-group\">
@@ -37,7 +37,7 @@ $response .= "
         $response .= " value='$book->title'";
     }
 
-    $response.="
+    $response .= "
     required />
     </div>
 
@@ -53,7 +53,7 @@ $response .= "
         $response .= " value='" . convertDecimalPoint($book->price) . "'";
     }
 
-$response .= "
+    $response .= "
     required />
     </div>
     
@@ -77,7 +77,7 @@ $response .= "
         $response .= ">$category->category_description</option>";
     }
 
-$response .= "
+    $response .= "
     </select>
     </div>
     
@@ -90,7 +90,7 @@ $response .= "
         $response .= $book->shortcontent;
     }
 
-$response .="</textarea>
+    $response .= "</textarea>
     </div>";
 
     if (isset($book)) {
@@ -106,7 +106,9 @@ $response .="</textarea>
 <script src=\"//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.8/jquery.form-validator.min.js\"></script>
 <script src='js/addBookValidation.js'></script>
 </div>
-</div>
+</div>";
+}
+    $response .= "
 </div>
 </div>
 ";

@@ -42,6 +42,8 @@ if (count($results) < 1) {
     }
     $response .= "</tbody>";
     $response .= "</table>";
+    $response .= "<p>* <i>De knoppen om te verwijderen die zijn uitgeschakeld , zijn van boeken die uitgeleend zijn en ";
+    $response .= "deze kunnen niet werwijderd worden.</i></p>";
     $response .= "<a href='index.php?page=addBook' class='btn btn-warning'>Boek toevoegen</a>";
     $response .= "</div>";
     $response .= "<script src=\"js/handleBookDelete.js\"></script>";

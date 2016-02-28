@@ -85,6 +85,7 @@ if (!isset($book)) {
 
     $response .= "
                 <p><strong>Categorie:</strong>&nbsp;$book->category_description</p>
+                <p><strong>ISBN nummer:</strong>&nbsp;$book->isbn</p>
                 <h4>Korte omschrijving</h4>
                 <div>$book->shortcontent</div>
             </div>

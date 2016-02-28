@@ -35,7 +35,8 @@ if (count($results) < 1) {
         $response .= " <a href=\"index.php?page=updateBook&bookId=" . $book->id . "\" class=\"btn btn-success\">";
         $response .= "Aanpassen</a>";
         $response .= "</td>";
-        $response .= "<td class=\"delete\" id='$book->id'><input id='" . $book->id . "' type=\"submit\" class=\"btn btn-danger\" value=\"verwijderen\"></td>";
+        $response .= "<td class=\"delete\" id='$book->id'><input name='" . $book->loan_status . "' id='" . $book->id;
+        $response .= "' type=\"submit\" class=\"btn btn-danger\" value=\"verwijderen\"></td>";
         $response .= " </tr>";
         $resultCounter++;
     }

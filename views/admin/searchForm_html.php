@@ -14,6 +14,7 @@ $response .= "
         <select name='searchFilter' id='searchTerm' class=\"form-control\" >
         <option value='1'>titel</option>
         <option value='2'>korte inhoud</option>
+        <option value='3'>ISBN nummer</option>
         </select>
        </div>
        

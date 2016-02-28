@@ -7,10 +7,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $searchFilter = $_POST['searchFilter'];
     $searchTerm = $_POST['searchTerm'];
 
-    if ($searchFilter == 1) {
-        $dbColumn = "title";
-    } else {
-        $dbColumn = "shortcomment";
+    switch ($searchFilter) {
+        case 1:
+            $dbColumn = "title";
+            break;
+        case 2:
+            $dbColumn = "shortcomment";
+            break;
+        case 3:
+            $dbColumn = "isbn";
+            break;
+        default:
+            $dbColumn = "title";
     }
 
     $bookTable = new Book_Table($db);

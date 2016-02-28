@@ -3,16 +3,19 @@
 $response = "";
 $response .= "<div class='row'>
 <div class=\"col-sm-6 col-sm-offset-3\">
- <h1><span class=\"fa fa-plus\"></span> Maak een nieuwe admin gebruiker aan</h1>";
+ <h1><span class=\"fa fa-plus\"></span> Maak een nieuwe bibliothecaris aan</h1>";
 if (isset($adminErrorFormMessage)) {
     $response .= '<div class="alert alert-danger">' . $adminErrorFormMessage . ' </div>';
 }
 
 if (isset($adminOKFormMessage)) {
-    $response .= '<div class="alert alert-success">' . $adminOKFormMessage . ' </div>';
-}
+    $response .= '<div class="alert alert-success">' . $adminOKFormMessage;
+    $response .= " Ga terug naar de <a href='index.php'>hoofdpagina</a>";
+    $response .= " of gebruik de navigatiebalk bovenaan om naar een ander scherm te gaan.";
+    $response .= '</div>';
+} else {
 
-$response .= " 
+    $response .= "
 
 <form method='post' action='index.php?page=users'>
       <div class=\"form-group\">
@@ -34,7 +37,9 @@ $response .= "
 		  required/>
         </div>
         <input type='submit' class=\"btn btn-warning btn-lg\" value='cre&euml;er admin' name='new-admin'/>
-</form>
+</form>";
+}
+$response .= "
 </div>
 </div>
 

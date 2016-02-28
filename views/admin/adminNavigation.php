@@ -76,7 +76,7 @@ $createAdminActive = ($currentPage == 'users') ? 'active' : '';
 
 $response .= "
      <li class='$createAdminActive'>
-        <a href='index.php?page=users'>Cre&euml;er admin</a>
+        <a href='index.php?page=users'>Cre&euml;er bibliothecaris</a>
     </li>
     <li>
     <a href='index.php?logout=true'>Uitloggen</a>

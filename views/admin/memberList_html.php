@@ -2,20 +2,21 @@
 // view for member list
 
 $response = "";
+$response .= '<div class="container">';
+$response .= '<h1>Leden lijst</h1>';
 $results = [];
 while ($member = $members->fetchObject()) {
     array_push($results, $member);
 }
 
 if (count($results) < 1) {
-    $response .= '<div class="container">';
+
     $response .= '<div class="alert alert-warning">' . "Geen resultaten beschikbaar." . ' </div>';
     $response .= "<button class='btn btn-default' onclick=\"goBack()\">Ga terug</button>";
     $response .= '</div>';
     $response .= "<script src='js/goBack.js'></script>";
 } else {
     $response .= "
-<div class='container'>
 <table class=\"table table-striped\" id=\"allResultsTable\">
 
     <thead>

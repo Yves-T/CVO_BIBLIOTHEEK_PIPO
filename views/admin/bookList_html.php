@@ -1,20 +1,20 @@
 <?php
 
 // view for book list
+$response = '<div class="container">';
+$response .= '<h1>Lijst met boeken</h1>';
 $results = [];
 while ($book = $books->fetchObject()) {
     array_push($results, $book);
 }
 
 if (count($results) < 1) {
-    $response .= '<div class="container">';
     $response .= '<div class="alert alert-warning">' . "Geen resultaten beschikbaar." . ' </div>';
     $response .= "<button class='btn btn-default' onclick=\"goBack()\">Ga terug</button>";
     $response .= '</div>';
     $response .= "<script src='js/goBack.js'></script>";
 } else {
-    $response = "
-    <div class='container'>
+    $response .= "
     <table class=\"table table-striped\" id=\"allResultsTable\">
     <thead>
     <tr>

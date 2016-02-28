@@ -4,7 +4,7 @@
 // there are no books found. Tell user about it.
 if (!isset($author)) {
     $response = "
-    <div class=\"alert alert-warning\" role=\"alert\">Er zijn geen details beschikbaar voor deze autheur</div>";
+    <div class=\"alert alert-warning\" role=\"alert\">Er zijn geen details beschikbaar voor deze auteur</div>";
 } else {
 // book details available, so show them to the user.
     $response = " 
@@ -23,8 +23,8 @@ if (!isset($author)) {
             <div class=\"caption-full\">";
 
     $response .= "
-                <h3>Details voor autheur: &nbsp;$author->firstname&nbsp;$author->lastname</h3>
-                <h4><strong>Autheur biografie:</strong></h4>
+                <h3>Details voor auteur: &nbsp;$author->firstname&nbsp;$author->lastname</h3>
+                <h4><strong>Auteur biografie:</strong></h4>
                 <div>$author->biography</div>";
     if (isset($author->title)) {
         $response .= "
@@ -45,12 +45,12 @@ if (!isset($author)) {
                 <div id='removeBookOk'>
                 <div class=\"alert alert-success\">
                 Boek met success losgekoppeld.&nbsp;
-                <a href='index.php?page=listAuthors'>Keer terug naar de lijst met autheurs</a>
+                <a href='index.php?page=listAuthors'>Keer terug naar de lijst met auteurs</a>
                 </div>
                 </div>
                 ";
     } else {
-        $response .= "Voor deze autheur zijn geen boeken beschikbaar.";
+        $response .= "Voor deze auteur zijn geen boeken beschikbaar.";
 
         $booksWithoutAuthorsResults = [];
         while ($bookWithoutAuthor = $booksWithoutAuthor->fetchObject()) {
@@ -61,11 +61,11 @@ if (!isset($author)) {
         if (count($booksWithoutAuthorsResults) > 0) {
 
         // form to link author to a book
-        $response .= "<h4><span class=\"fa fa-link\"></span> Autheur aan boek koppelen</h4>";
+        $response .= "<h4><span class=\"fa fa-link\"></span> Auteur aan boek koppelen</h4>";
         $response .= "
  <form method='post' action='index.php?page=authorDetail'  enctype='multipart/form-data'>
  <div class=\"form-group\">
- <label>Lijst boeken zonder autheur</label>
+ <label>Lijst boeken zonder auteur</label>
     <select class=\"form-control\" name='bookId'>";
 
         foreach($booksWithoutAuthorsResults as $bookWithoutAuthor) {

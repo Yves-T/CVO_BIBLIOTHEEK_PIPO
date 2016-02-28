@@ -11,8 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $authorId = $_POST['auhorId'];
     $authorTable->updateAuthor($_POST);
 
-    $okMessage = "Autheur met success aangepast. ";
-    $okMessage .= "<a href='index.php?page=listAuthors'>&nbsp;Keer terug naar de lijst met autheurs</a>";
+    $okMessage = "Auteur met success aangepast. ";
+    $okMessage .= "<a href='index.php?page=listAuthors'>&nbsp;Keer terug naar de lijst met auteurs</a>";
 } else {
     $authorId = $_GET['authorId'];
 }
@@ -21,10 +21,10 @@ $book = $authorTable->getAuthorDetail($authorId)->fetchObject();
 $book->author_id = $book->id;
 
 // init variables for submit
-$buttonText = "Autheur updaten";
+$buttonText = "Auteur updaten";
 $submitName = "update-author";
 $pageName = "updateAuthor";
-$formTitle = "Autheur updaten";
+$formTitle = "Auteur updaten";
 
 // return view for this controller
 $updateAuthorView = include_once "views/admin/authorForm_html.php";

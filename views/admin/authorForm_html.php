@@ -26,12 +26,12 @@ if (isset($notOkMessage)) {
     $response .= "
     
      <fieldset>
-    <legend>Autheur informatie:</legend>
+    <legend>Auteur informatie:</legend>
     <!--author first name-->
     <div class=\"form-group\">
-    <label>Voornaam autheur</label>
+    <label>Voornaam auteur</label>
     <input type='text' name='authorFirstName'  class=\"form-control\" data-validation=\"required\" 
-    data-validation-error-msg=\"Gelieve de voornaam van de autheur in te vullen!\"";
+    data-validation-error-msg=\"Gelieve de voornaam van de auteur in te vullen!\"";
 
     if (isset($book->firstname)) {
         $response .= " value='$book->firstname'";
@@ -43,9 +43,9 @@ if (isset($notOkMessage)) {
     
     <!--author last name-->
     <div class=\"form-group\">
-    <label>Achternaam autheur</label>
+    <label>Achternaam auteur</label>
     <input type='text' name='authorLastName'  class=\"form-control\" data-validation=\"required\" 
-    data-validation-error-msg=\"Gelieve de achternaam van de autheur in te vullen!\"";
+    data-validation-error-msg=\"Gelieve de achternaam van de auteur in te vullen!\"";
 
     if (isset($book->lastname)) {
         $response .= " value='$book->lastname'";
@@ -57,7 +57,7 @@ if (isset($notOkMessage)) {
     
      <!--author biography-->
     <div class=\"form-group\">
-    <label>Autheur biografie</label>
+    <label>Auteur biografie</label>
     <textarea class=\"form-control\" id='authorBiographyEditor' rows=\"3\" name='authorBiography' >";
 
     if (isset($book->biography)) {

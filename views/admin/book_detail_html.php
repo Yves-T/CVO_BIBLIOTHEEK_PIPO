@@ -33,7 +33,7 @@ if (!isset($book)) {
 
     if (isset($book->firstname)) {
         $response .= "
-                <p id='$book->author_id'><strong>Autheur:</strong>&nbsp;$book->firstname&nbsp;$book->lastname&nbsp;";
+                <p id='$book->author_id'><strong>Auteur:</strong>&nbsp;$book->firstname&nbsp;$book->lastname&nbsp;";
 
         if (!isset($okMessage)) {
             $response .= "<input id='$book->author_id' type=\"submit\" class=\"btn btn-danger btn-sm delete\"";
@@ -44,13 +44,13 @@ if (!isset($book)) {
 
                 <div id='removeBookOk'>
                 <div class=\"alert alert-success\">
-                Autheur met success losgekoppeld.&nbsp;
+                Auteur met success losgekoppeld.&nbsp;
                 <a href='index.php?page=listBooks'>Keer terug naar de lijst met boeken</a>
                 </div>
                 </div>
 ";
     } else {
-        $response .= "<p><strong>Autheur:</strong> Er is geen autheur voor dit boek bekend op dit moment.</p>";
+        $response .= "<p><strong>Auteur:</strong> Er is geen auteur voor dit boek bekend op dit moment.</p>";
         $authorsWithoutBookResults = [];
         while ($authorWithoutBook = $authorsWithoutBooks->fetchObject()) {
             array_push($authorsWithoutBookResults, $authorWithoutBook);
@@ -60,11 +60,11 @@ if (!isset($book)) {
         if (count($authorsWithoutBookResults) > 0) {
 
         // form to link book to an author
-        $response .= "<h4><span class=\"fa fa-link\"></span> Boek aan een autheur koppelen</h4>";
+        $response .= "<h4><span class=\"fa fa-link\"></span> Boek aan een auteur koppelen</h4>";
         $response .= "
  <form method='post' action='index.php?page=bookDetail'  enctype='multipart/form-data'>
  <div class=\"form-group\">
- <label>Lijst boeken zonder autheur</label>
+ <label>Lijst boeken zonder auteur</label>
     <select class=\"form-control\" name='authorId'>";
 
         foreach($authorsWithoutBookResults as $authorWithoutBook) {
@@ -76,7 +76,7 @@ if (!isset($book)) {
         </select>
     </div>
     <input type='hidden' name='bookId' value='$book->id'>
-    <input type='submit' id='submit' class=\"btn btn-warning btn-lg\" value='Koppel deze autheur' name='connect-authorbook' />
+    <input type='submit' id='submit' class=\"btn btn-warning btn-lg\" value='Koppel deze auteur' name='connect-authorbook' />
     </form>
  ";
         }

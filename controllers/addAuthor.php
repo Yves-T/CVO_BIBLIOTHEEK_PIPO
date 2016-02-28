@@ -8,15 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $authorTable = new Author_Table($db);
     $authorTable->addAuthor($_POST);
 
-    $okMessage = "Autheur met success toegevoegd. ";
-    $okMessage .= "<a href='index.php?page=listAuthors'>Keer terug naar de lijst met autheurs</a>";
+    $okMessage = "Auteur met success toegevoegd. ";
+    $okMessage .= "<a href='index.php?page=listAuthors'>Keer terug naar de lijst met auteurs</a>";
 }
 
 // init variables for submit
-$buttonText = "Autheur toevoegen";
+$buttonText = "Auteur toevoegen";
 $submitName = "add-author";
 $pageName = "addAuthor";
-$formTitle = "Autheur toevoegen";
+$formTitle = "Auteur toevoegen";
 
 // return a view for this controller
 $addAuthor = include_once "views/admin/authorForm_html.php";

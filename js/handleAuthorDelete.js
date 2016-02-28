@@ -1,6 +1,6 @@
 $(document).on("click", ".delete", function (event) {
 
-    var answer = confirm("Wil je deze autheur echt verwijderen ?");
+    var answer = confirm("Wil je deze auteur echt verwijderen ?");
     if (answer == true) {
         $.ajax({
             url: "utility/deleteAuthorFromTable.php",

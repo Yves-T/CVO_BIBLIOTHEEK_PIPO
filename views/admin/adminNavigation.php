@@ -50,10 +50,10 @@ $response .= (($writersDropDown) ? ' active' : '');
 
 $response .= "\">
           <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\"
-           aria-expanded=\"false\">Autheur <span class=\"caret\"></span></a>
+           aria-expanded=\"false\">Auteur <span class=\"caret\"></span></a>
           <ul class=\"dropdown-menu\">
-            <li><a href='index.php?page=listAuthors'>Lijst autheurs</a></li>
-            <li><a href='index.php?page=addAuthor'>Autheur toevoegen</a></li>
+            <li><a href='index.php?page=listAuthors'>Lijst auteurs</a></li>
+            <li><a href='index.php?page=addAuthor'>Auteur toevoegen</a></li>
           </ul>
      </li>";
 

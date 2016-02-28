@@ -2,7 +2,7 @@
 
 // view for author list
 $response = '<div class="container">';
-$response .= '<h1>Lijst met autheurs</h1>';
+$response .= '<h1>Lijst met auteurs</h1>';
 
 $results = [];
 while ($author = $authors->fetchObject()) {
@@ -22,7 +22,7 @@ $response .= "
     <thead>
     <tr>
         <th>#</th>
-        <th>Autheur</th>
+        <th>Auteur</th>
         <th>Aanpassen</th>
         <th>Verwijderen</th>
     </tr>
@@ -44,7 +44,7 @@ foreach ($results as $author) {
 }
 $response .= "</tbody>";
 $response .= "</table>";
-$response .= "<a href='index.php?page=addAuthor' class='btn btn-warning'>Autheur toevoegen</a>";
+$response .= "<a href='index.php?page=addAuthor' class='btn btn-warning'>Auteur toevoegen</a>";
 }
 $response .= "</div>";
 $response .= "<script src=\"js/handleAuthorDelete.js\"></script>";

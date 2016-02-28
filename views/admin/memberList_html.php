@@ -18,6 +18,8 @@ if (count($results) < 1) {
     <tr>
         <th>#</th>
         <th>Naam</th>
+        <th>Aanpasen</th>
+        <th>Verwijderen</th>
     </tr>
     </thead>
     <tbody>";

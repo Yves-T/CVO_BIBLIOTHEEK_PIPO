@@ -9,6 +9,7 @@ $response = "
     <tr>
         <th>#</th>
         <th>Autheur</th>
+        <th>Aanpassen</th>
         <th>Verwijderen</th>
     </tr>
     </thead>
@@ -19,6 +20,10 @@ while ($author = $authors->fetchObject()) {
     $response .= " <tr>";
     $response .= "<td>" . $author->id . "</td>";
     $response .= "<td><a href='" . $authorDetailLink . "'>" . $author->firstname . ' ' . $author->lastname . "</a></td>";
+    $response .= "<td>";
+    $response .= " <a href=\"index.php?page=updateAuthor&authorId=" . $author->id . "\" class=\"btn btn-success\">";
+    $response .= "Aanpassen</a>";
+    $response .= "</td>";
     $response .= "<td class=\"delete\" id='$author->id'><input id='" . $author->id;
     $response .= "' type=\"submit\" class=\"btn btn-danger\" value=\"verwijderen\"></td>";
     $response .= " </tr>";

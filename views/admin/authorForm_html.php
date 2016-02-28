@@ -13,7 +13,7 @@ if (isset($notOkMessage)) {
 
     if (isset($okMessage)) {
         $response .= '<div class="alert alert-success">' . $okMessage . ' </div>';
-    }
+    } else {
 
     $response .= "
 <h1><span class=\"fa fa-pencil\"></span> $formTitle</h1>
@@ -80,7 +80,9 @@ if (isset($notOkMessage)) {
 <script src=\"//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.8/jquery.form-validator.min.js\"></script>
 <script src='js/addAuthorValidation.js'></script>
 </div>
-</div>
+</div>";
+    }
+    $response .= "
 </div>
 </div>
 ";

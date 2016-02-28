@@ -9,7 +9,9 @@ while ($book = $books->fetchObject()) {
 if (count($results) < 1) {
     $response = '<div class="alert alert-warning">' . "Geen resultaten beschikbaar." . ' </div>';
 } else {
-    $response = "<table class=\"table table-striped\" id=\"allResultsTable\">
+    $response = "
+    <div class='container'>
+    <table class=\"table table-striped\" id=\"allResultsTable\">
     <thead>
     <tr>
         <th>#</th>
@@ -35,6 +37,7 @@ if (count($results) < 1) {
     }
     $response .= "</tbody>";
     $response .= "</table>";
+    $response .= "</div>";
     $response .= "<script src=\"js/handleBookDelete.js\"></script>";
 }
 

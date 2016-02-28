@@ -2,7 +2,9 @@
 
 // view for author list
 
-$response = "<table class=\"table table-striped\" id=\"allResultsTable\">
+$response = "
+<div class='container'>
+<table class=\"table table-striped\" id=\"allResultsTable\">
     <thead>
     <tr>
         <th>#</th>
@@ -23,5 +25,6 @@ while ($author = $authors->fetchObject()) {
 }
 $response .= "</tbody>";
 $response .= "</table>";
+$response .= "</div>";
 $response .= "<script src=\"js/handleAuthorDelete.js\"></script>";
 return $response;

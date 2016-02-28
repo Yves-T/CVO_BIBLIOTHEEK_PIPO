@@ -76,4 +76,15 @@ class Address_Table extends Table
             return false;
         }
     }
+
+    /**
+     * Delete address.
+     * @param $addressIdToDelete
+     */
+    public function deleteAddress($addressIdToDelete)
+    {
+        $deleteSql = "DELETE FROM address WHERE id=?";
+        $data = array($addressIdToDelete);
+        return $this->makeStatement($deleteSql, $data);
+    }
 }

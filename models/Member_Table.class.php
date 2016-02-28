@@ -147,4 +147,36 @@ class Member_Table extends Table
         return $this->makeStatement($sql, $data);
     }
 
+    /**
+     * Delete a member
+     * @param $memberId
+     */
+    public function deleteMember($memberId)
+    {
+        try {
+            // start transaction
+            $this->db->beginTransaction();
+
+            // 1 get member
+            $memberToDelete = $this->getMemberById($memberId)->fetchObject();
+            $addressIdToDelete = $memberToDelete->address_id;
+
+            // 2 delete his address
+            $addressTable = new Address_Table($this->db);
+            $addressTable->deleteAddress($addressIdToDelete);
+
+            // 3 delete member
+            $deleteSql = "DELETE FROM member WHERE id=?";
+            $data = array($memberId);
+            $this->makeStatement($deleteSql, $data);
+
+            // commit transaction
+            $this->db->commit();
+        } catch (PDOException $ex) {
+            //Something went wrong rollback!
+            $this->db->rollBack();
+            echo $ex->getMessage();
+        }
+    }
+
 }

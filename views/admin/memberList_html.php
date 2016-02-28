@@ -39,7 +39,7 @@ if (count($results) < 1) {
     $response .= "</tbody>";
     $response .= "</table>";
     $response .= "</div>";
-    $response .= "<script src=\"js/handleBookDelete.js\"></script>";
+    $response .= "<script src=\"js/handleMemberDelete.js\"></script>";
 }
 
 // return view to the browser

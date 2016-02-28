@@ -23,7 +23,7 @@ if (count($results) < 1) {
     <tbody>";
     $resultCounter = 0;
     foreach ($results as $member) {
-        $memberDetailLink = "index.php?page=memberDetail&amp;bookId=$member->id";
+        $memberDetailLink = "index.php?page=memberDetail&amp;memberId=$member->id";
         $response .= " <tr>";
         $response .= "<td>" . $member->id . "</td>";
         $response .= "<td><a href='" . $memberDetailLink . "'>" . $member->firstname .' '. $member->lastname. "</a></td>";

@@ -2,6 +2,9 @@
 
 if (strrpos($_SERVER['REQUEST_URI'], '/utility/')) {
     include_once "../models/Table.class.php";
+} elseif (strrpos($_SERVER['REQUEST_URI'], '/admin/')) {
+    include_once "../../models/Table.class.php";
+    include_once "../../models/Author_Table.class.php";
 } else {
     include_once "models/Table.class.php";
 }

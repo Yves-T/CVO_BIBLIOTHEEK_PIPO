@@ -39,6 +39,7 @@ $response .= "\">
             <li><a href='index.php?page=addBook'>Boek toevoegen</a></li>
             <li><a href='index.php?page=searchBook'>Boek zoeken</a></li>
             <li><a href='index.php?page=loanBooks'>Lijst met uitgeleende boeken</a></li>
+            <li><a href='index.php?page=graphBooks'>Grafiek aantal boeken per categorie</a></li>
           </ul>
      </li>
     ";

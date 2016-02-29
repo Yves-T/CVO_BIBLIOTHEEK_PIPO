@@ -3,6 +3,9 @@
 if (strrpos($_SERVER['REQUEST_URI'], '/utility/')) {
     include_once "../models/Table.class.php";
     include_once "../models/Author_Table.class.php";
+} elseif (strrpos($_SERVER['REQUEST_URI'], '/admin/')) {
+    include_once "../../models/Table.class.php";
+    include_once "../../models/Author_Table.class.php";
 } else {
     include_once "models/Table.class.php";
     include_once "models/Author_Table.class.php";
@@ -238,5 +241,17 @@ class Book_Table extends Table
         $sql = "UPDATE book SET author_id=NULL WHERE author_id=?";
         $data = array($authorId);
         return $this->makeStatement($sql, $data);
+    }
+
+    public function getBooksInCategory()
+    {
+        $sql = "SELECT book_category.category_description,count(book.category_id) AS count
+          FROM book_category
+          LEFT JOIN book ON book_category.id = book.category_id
+          GROUP BY book_category.id ORDER BY book_category.category_description";
+
+        $statement = $this->makeStatement($sql);
+
+        return $statement;
     }
 }

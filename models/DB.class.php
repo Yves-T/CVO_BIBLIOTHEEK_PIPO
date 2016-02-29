@@ -14,6 +14,8 @@ class DB
 
             if (strrpos($_SERVER['REQUEST_URI'], '/utility/')) {
                 $dsn = "sqlite:../models/bibliotheek.db";
+            } elseif (strrpos($_SERVER['REQUEST_URI'], '/admin/')) {
+                $dsn = "sqlite:../../models/bibliotheek.db";
             } else {
                 $dsn = "sqlite:models/bibliotheek.db";
             }
